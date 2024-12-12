@@ -2,7 +2,7 @@
 kind: AuthorizationPolicy
 metadata:
   name: allow-intra-namespace-01
-  namespace: ind-ns2  # The namespace where your services reside (e.g., ind-ns1)
+  namespace: ind-ns1  # The namespace where your services reside (e.g., ind-ns1)
 spec:
   selector:
     matchLabels: {}  # This allows all services within the namespace (ind-ns1)
