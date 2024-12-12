@@ -1,7 +1,7 @@
 ﻿apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: allow-intra-namespace
+  name: allow-intra-namespace-01
   namespace: ind-ns1  # The namespace where your services reside (e.g., ind-ns1)
 spec:
   selector:
