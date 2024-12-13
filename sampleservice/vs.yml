@@ -15,4 +15,4 @@ spec:
     - destination:
         host: my-service01
         port:
-          number: 80
+          number: 443
