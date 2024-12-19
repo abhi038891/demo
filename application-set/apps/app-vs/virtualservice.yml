@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: appset-vs01
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - my-gateway03
+  http:
+  - match:
+    - uri:
+        exact: /sample-appset-service03
+    route:
+    - destination:
+        host: sample-appset-service03
+        port:
+          number: 80
