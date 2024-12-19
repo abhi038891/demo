@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-set-testapp-01
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/abhi038891/demo.git' # Git repo URL
+    targetRevision: main                               # Git branch or tag
+    path: argo-apps-container/sampleservice02/                       # Path to manifests in repo
+  destination:
+    server: 'https://kubernetes.default.svc'           # Target Kubernetes API server
+    namespace: 'ind-ns1'                          # Kubernetes namespace
+  syncPolicy:
+    automated:                                         # Automated sync options
+      prune: true
+      selfHeal: true
