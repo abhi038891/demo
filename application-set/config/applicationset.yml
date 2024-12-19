@@ -22,7 +22,7 @@ spec:
         path: '{{path}}'  # Path to the manifests
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'ind-ns1 '  # Dynamic namespace
+        namespace: 'ind-ns1'  # Dynamic namespace
       syncPolicy:
         automated:
           prune: true
