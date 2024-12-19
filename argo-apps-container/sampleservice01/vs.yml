@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: my-virtualservice03
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - my-gateway03
+  http:
+  - match:
+    - uri:
+        exact: /my-service03
+    route:
+    - destination:
+        host: my-service03
+        port:
+          number: 80
