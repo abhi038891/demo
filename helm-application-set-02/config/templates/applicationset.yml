@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: {{ .Values.applicationset.name }}
+  namespace: {{ .Values.applicationset.namespace }}
+spec:
+  generators:
+  - git:
+      repoURL: {{ .Values.applicationset.repoURL | quote }}
+      revision: {{ .Values.applicationset.revision | quote }}
+      directories:
+      - path: {{ .Values.applicationset.basePath }}/*
+  template:
+    metadata:
+      name: '{{path.basename}}'  # Application name based on the directory name
+    spec:
+      project: default
+      source:
+        repoURL: {{ .Values.applicationset.repoURL | quote }}
+        targetRevision: {{ .Values.applicationset.revision | quote }}
+        path: '{{path}}'
+        helm:
+          valueFiles:
+            - values.yaml # Helm values file
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: {{ .Values.applicationset.resourcesnamespace }}
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
