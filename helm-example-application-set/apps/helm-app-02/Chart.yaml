@@ -1,0 +1,4 @@
+apiVersion: v3
+name: istio-virtualservice
+description: A Helm chart for deploying Istio VirtualService
+version: 0.2.0
