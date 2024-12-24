@@ -6,7 +6,7 @@ resources:
 replacements:
   - source:
       kind: ConfigMap
-      name: app2-config
+      name: app3-config
       fieldPath: data.AUTH_POLICY_NAME
     targets:
       - select:
@@ -15,7 +15,7 @@ replacements:
           - metadata.name
   - source:
       kind: ConfigMap
-      name: app2-config
+      name: app3-config
       fieldPath: data.NAMESPACE
     targets:
       - select:

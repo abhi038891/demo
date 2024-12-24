@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: app2-config
+  name: app3-config
 data:
-  APP_INSTANCE: app2
-  AUTH_POLICY_NAME: kustomize-auth-policy-02
+  APP_INSTANCE: app3
+  AUTH_POLICY_NAME: auth-policy-03
   NAMESPACE: ind-ns1
