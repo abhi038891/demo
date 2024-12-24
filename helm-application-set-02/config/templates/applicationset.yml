@@ -12,13 +12,13 @@ spec:
       - path: {{ .Values.applicationset.basePath }}/*
   template:
     metadata:
-      name: '{{path.basename}}'  # Application name based on the directory name
+      name: '{{ "{{path.basename}}" }}'  # Application name based on directory
     spec:
       project: default
       source:
         repoURL: {{ .Values.applicationset.repoURL | quote }}
         targetRevision: {{ .Values.applicationset.revision | quote }}
-        path: '{{path}}'
+        path: '{{ "{{path}}" }}'  # Path to manifests
         helm:
           valueFiles:
             - values.yaml # Helm values file

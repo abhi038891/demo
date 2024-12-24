@@ -1,0 +1,8 @@
+name: vs-appset-01
+hosts:
+  - "*"
+gateway: my-gateway03
+uri: /sample-appset-service03
+destination:
+  host: sample-appset-service03
+  port: 80
