@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: my-applicationset
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: 'https://github.com/abhi038891/demo.git' # Your Git repo URL
+      revision: main  # Branch to monitor
+      directories:
+      - path: kustomize-appset-01/apps/*  # Scan all subdirectories under 'apps/'
+  template:
+    metadata:
+      name: '{{path.basename}}'  # Application name based on the directory name
+      namespace: argocd
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/abhi038891/demo.git'
+        targetRevision: main
+        path: '{{path}}'  # Path to the manifests
+        kustomize:
+          namePrefix: 'kustomize-'
+          patches:
+            - target:
+                kind: VirtualService
+                name: '{{path.basename}}-vs'  # Name based on the directory
+              patch: |-
+                # Replace the host dynamically based on the app-specific configMap values
+                - op: replace
+                  path: /spec/hosts/0
+                  value: "{{.host}}"  # Reference the host from the app's kustomization.yaml (ConfigMap value)
+                # Replace the exact URL dynamically based on the app-specific configMap values
+                - op: replace
+                  path: /spec/http/0/match/0/uri/exact
+                  value: "{{.exact_url}}"  # Reference the exact URL from the app's kustomization.yaml (ConfigMap value)
+                # Set the destination host dynamically based on the app's name
+                - op: add
+                  path: /spec/http/0/route/0/destination/host
+                  value: "{{.name}}-service"  # Dynamically set the destination host
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: 'ind-ns1'  # Dynamic namespace
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

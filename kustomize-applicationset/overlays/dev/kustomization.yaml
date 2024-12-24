@@ -1,0 +1,7 @@
+resources:
+  - ../../base
+
+configMapGenerator:
+  - name: applicationset-params
+    literals:
+      - APPLICATIONSET_NAME="kustomize-applicationset01"

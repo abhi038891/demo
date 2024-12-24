@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: $(APPLICATIONSET_NAME)
+  namespace: $(ARGOCD_NAMESPACE)
+spec:
+  generators:
+  - git:
+      repoURL: $(REPO_URL)  # Placeholder for the Git repo URL
+      revision: $(REVISION)  # Placeholder for the branch
+      directories:
+      - path: $(PATH_PATTERN)  # Placeholder for the directory path pattern
+  template:
+    metadata:
+      name: '{{path.basename}}'  # Application name based on the directory name
+      namespace: $(ARGOCD_NAMESPACE)
+    spec:
+      project: default
+      source:
+        repoURL: $(REPO_URL)
+        targetRevision: $(REVISION)
+        path: '{{path}}'  # Path to the manifests
+      destination:
+        server: $(DESTINATION_SERVER)
+        namespace: $(DESTINATION_NAMESPACE)  # Dynamic namespace
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

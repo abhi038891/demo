@@ -1,0 +1,14 @@
+resources:
+  - applicationset.yaml
+
+configMapGenerator:
+  - name: applicationset-params
+    behavior: replace
+    literals:
+      - APPLICATIONSET_NAME="kustomize-applicationset01"
+      - ARGOCD_NAMESPACE="argocd"
+      - REPO_URL="https://github.com/abhi038891/demo.git"
+      - REVISION="main"
+      - PATH_PATTERN="kustomize-applicationset/apps/*""
+      - DESTINATION_SERVER="https://kubernetes.default.svc"
+      - DESTINATION_NAMESPACE="ind-ns1"
