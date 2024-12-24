@@ -1,8 +1,8 @@
 ﻿apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: AUTH_POLICY_NAME_PLACEHOLDER  # Will be replaced dynamically
-  namespace: NAMESPACE_PLACEHOLDER    # Will be replaced dynamically
+  name: auth-policy-02 # Will be replaced dynamically
+  namespace: ind-ns1  # Will be replaced dynamically
 spec:
   selector:
     matchLabels: {}
@@ -10,4 +10,4 @@ spec:
   rules:
     - from:
         - source:
-            namespaces: ["NAMESPACE_PLACEHOLDER"]  # Will be replaced dynamically
+            namespaces: ["ind-ns1"]  # Will be replaced dynamically
