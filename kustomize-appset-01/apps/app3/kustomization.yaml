@@ -22,4 +22,3 @@ replacements:
           kind: AuthorizationPolicy
         fieldPaths:
           - metadata.namespace
-          - spec.rules[0].from[0].source.namespaces[0]

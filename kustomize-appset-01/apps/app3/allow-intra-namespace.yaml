@@ -8,7 +8,6 @@ spec:
   rules:
     - from:
         - source:
-            namespaces:
-              - $(NAMESPACE)
+            namespaces: ["ind-ns2"]
   selector:
     matchLabels: {}
