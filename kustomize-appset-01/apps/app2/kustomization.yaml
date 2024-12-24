@@ -2,6 +2,22 @@
 resources:
   - allow-intra-namespace.yaml
 
+vars:
+  - name: AUTH_POLICY_NAME
+    objref:
+      kind: ConfigMap
+      name: app2-config
+      apiVersion: v1
+    fieldref:
+      fieldpath: metadata.name
+  - name: NAMESPACE
+    objref:
+      kind: Namespace
+      name: ind-ns1
+      apiVersion: v1
+    fieldref:
+      fieldpath: metadata.name
+
 # Define custom configuration for the app (host and exact URL)
 configMapGenerator:
   - name: app2-config
