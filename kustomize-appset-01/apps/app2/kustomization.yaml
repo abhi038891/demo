@@ -1,0 +1,10 @@
+# ./apps/app1/kustomization.yaml
+resources:
+  - allow-intra-namespace.yaml
+
+# Define custom configuration for the app (host and exact URL)
+configMapGenerator:
+  - name: app2-config
+    literals:
+      - AUTH_POLICY_NAME=allow-intra-namespace-02
+      - SOURCE_NAMESPACE=ind-ns1
