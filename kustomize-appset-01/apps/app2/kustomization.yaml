@@ -1,26 +1,25 @@
-# ./apps/app1/kustomization.yaml
+# ./apps/app2/kustomization.yaml
+
 resources:
   - allow-intra-namespace.yaml
 
-vars:
-  - name: AUTH_POLICY_NAME
-    objref:
-      kind: ConfigMap
-      name: app2-config
-      apiVersion: v1
-    fieldref:
-      fieldpath: metadata.name
-  - name: NAMESPACE
-    objref:
+replacements:
+  - source:
       kind: Namespace
       name: ind-ns1
-      apiVersion: v1
-    fieldref:
-      fieldpath: metadata.name
-
-# Define custom configuration for the app (host and exact URL)
-configMapGenerator:
-  - name: app2-config
-    literals:
-      - AUTH_POLICY_NAME=allow-intra-namespace-02
-      - NAMESPACE=ind-ns1
+      fieldPath: metadata.name
+    targets:
+      - select:
+          kind: AuthorizationPolicy
+        fieldPaths:
+          - metadata.namespace  # Replace the namespace field
+          - spec.rules[0].from[0].source.namespaces[0]  # Replace the rule's namespace
+  - source:
+      kind: ConfigMap
+      name: app-config
+      fieldPath: data.AUTH_POLICY_NAME
+    targets:
+      - select:
+          kind: AuthorizationPolicy
+        fieldPaths:
+          - metadata.name  # Replace the name field
