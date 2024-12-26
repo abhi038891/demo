@@ -8,6 +8,6 @@ spec:
   rules:
     - from:
         - source:
-            namespaces: ['"$(NAMESPACE)"']
+            namespaces: [$(NAMESPACE)]
   selector:
     matchLabels: {}
