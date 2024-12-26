@@ -1,0 +1,13 @@
+﻿apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: $(AUTH_POLICY_NAME)
+  namespace: $(NAMESPACE)
+spec:
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            namespaces: [""$(NAMESPACE)""]
+  selector:
+    matchLabels: {}

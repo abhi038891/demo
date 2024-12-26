@@ -1,0 +1,33 @@
+# ./apps/app3/kustomization.yaml
+resources:
+  - allow-intra-namespace.yaml
+  - configmap.yaml
+
+replacements:
+  - source:
+      kind: ConfigMap
+      name: app4-config
+      fieldPath: data.AUTH_POLICY_NAME
+    targets:
+      - select:
+          kind: AuthorizationPolicy
+        fieldPaths:
+          - metadata.name
+  - source:
+      kind: ConfigMap
+      name: app4-config
+      fieldPath: data.NAMESPACE
+    targets:
+      - select:
+          kind: AuthorizationPolicy
+        fieldPaths:
+          - metadata.namespace
+  - source:
+      kind: ConfigMap
+      name: app3-config
+      fieldPath: data.NAMESPACE
+    targets:
+      - select:
+          kind: AuthorizationPolicy
+        fieldPaths:
+          - spec.rules[0].from[0].source.namespaces[0]

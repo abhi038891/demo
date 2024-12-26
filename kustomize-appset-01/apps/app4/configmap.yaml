@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app4-config
+data:
+  APP_INSTANCE: app4
+  AUTH_POLICY_NAME: auth-policy-04
+  NAMESPACE: ind-ns1
