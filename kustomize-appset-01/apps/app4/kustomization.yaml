@@ -30,4 +30,4 @@ replacements:
       - select:
           kind: AuthorizationPolicy
         fieldPaths:
-          - spec.rules[0].from[0].source.namespaces
+          - spec.rules[0].from[].source.namespaces
