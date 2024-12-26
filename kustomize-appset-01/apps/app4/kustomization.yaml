@@ -24,7 +24,7 @@ replacements:
           - metadata.namespace
   - source:
       kind: ConfigMap
-      name: app3-config
+      name: app4-config
       fieldPath: data.NAMESPACE
     targets:
       - select:
