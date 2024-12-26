@@ -22,12 +22,4 @@ replacements:
           kind: AuthorizationPolicy
         fieldPaths:
           - metadata.namespace
-  - source:
-      kind: ConfigMap
-      name: app4-config
-      fieldPath: data.NAMESPACE
-    targets:
-      - select:
-          kind: AuthorizationPolicy
-        fieldPaths:
-          - spec.rules[0].from[0].source.namespaces[0]
+          - spec.rules[].from[].source.namespaces
