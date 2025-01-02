@@ -1,0 +1,8 @@
+name: virtualservice-helmchart
+hosts:
+  - "*"
+gateway: virtualservice-helmchart
+uri: /virtualservice-helmchart
+destination:
+  host: virtualservice-helmchart
+  port: 80
