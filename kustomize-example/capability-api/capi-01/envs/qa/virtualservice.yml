@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: simple-virtualservice
+spec:
+  http:
+  - match:
+    - uri:
+        exact: /simple-qa-virtualservice
+    route:
+    - destination:
+        host: simple-qa-virtualservice
+        port:
+          number: 80

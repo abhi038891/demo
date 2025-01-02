@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: applicationset-kustomize-dev
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: 'https://github.com/abhi038891/demo.git' # Your Git repo URL
+      revision: main  # Branch to monitor
+      directories:
+      - path: capability-api/*/envs/dev    # Scan all subdirectories under 'envs/'
+  template:
+    metadata:
+      name: '{{path.basename}}'  # Application name based on the directory name
+      namespace: argocd
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/abhi038891/demo.git'
+        targetRevision: main
+        path: '{{path}}'  # Path to the manifests
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: 'ind-ns1'  # Dynamic namespace
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
