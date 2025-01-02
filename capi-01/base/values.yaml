@@ -1,0 +1,13 @@
+applicationset:
+  name: helm-applicationset-02
+  namespace: argocd
+  repoURL: https://github.com/abhi038891/demo.git
+  revision: main
+  basePath: capi-01/apps
+  resourcesnamespace: ind-ns1
+
+applications:
+  - name: app1
+    path: capi-01/apps/app1
+  - name: app2
+    path: capi-01/apps/app2
