@@ -9,7 +9,7 @@ spec:
       repoURL: 'https://github.com/abhi038891/demo.git' # Your Git repo URL
       revision: main  # Branch to monitor
       directories:
-      - path: capability-api/*/envs/dev    # Scan all subdirectories under 'envs/'
+      - path: kustomize-example/capability-api/*/envs/dev    # Scan all subdirectories under 'envs/'
   template:
     metadata:
       name: '{{path.basename}}'  # Application name based on the directory name
