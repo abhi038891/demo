@@ -18,8 +18,8 @@ spec:
       project: default
       source:
         repoURL: pxsacr.azurecr.io
-        chart: helm/demo-virtualservice
-        targetRevision: 0.1.*
+        chart: "{{values.chart.name}}"    # Dynamic chart name from values.yaml
+        targetRevision: "{{values.chart.version}}"  # Dynamic version from values.yaml
         helm:
           valueFiles:
             - '{{path}}/values.yaml'
