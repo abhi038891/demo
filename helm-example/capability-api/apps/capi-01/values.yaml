@@ -6,3 +6,7 @@ uri: /virtualservice-helmchart
 destination:
   host: virtualservice-helmchart
   port: 80
+serviceaccount:
+  create: true
+  name: serviceaccount-argocd-app
+  namespace: ind-ns1
