@@ -18,8 +18,8 @@ spec:
       project: default
       source:
         repoURL: pxsacr.azurecr.io
-        chart: "{{values.chart.name}}"    # Dynamic chart name from values.yaml
-        targetRevision: "{{values.chart.version}}"  # Dynamic version from values.yaml
+        chart: '{{path.basename}}/chart'
+        targetRevision: '{{metadata.version}}'
         helm:
           valueFiles:
             - '{{path}}/values.yaml'
