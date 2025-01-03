@@ -1,0 +1,7 @@
+chart:
+  name: helm/demo-virtualservice
+  version: 0.1.*
+namespace: ind-ns1
+replicaCount: 3
+image:
+  tag: latest
