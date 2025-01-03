@@ -1,5 +1,5 @@
 name: virtualservice-helmchart
-namespace: ind-ns2
+namespace: ind-ns3
 hosts:
   - "*"
 gateway: virtualservice-helmchart
