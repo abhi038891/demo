@@ -1,5 +1,5 @@
 {
-    "appName":"capability api 001",
+    "appName":"capability-api-001",
     "chartName":"helm/demo-virtualservice",
     "version" : "0.1.*",
     "namespace":"capi-001-ns"
