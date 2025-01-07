@@ -1,0 +1,6 @@
+{
+    "appName":"capability-api-002",
+    "chartName":"helm/capi-app-helm-dev",
+    "version" : "0.1.*",
+    "namespace":"capi-001-ns"
+}
