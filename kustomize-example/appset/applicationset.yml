@@ -12,7 +12,7 @@ spec:
       - path: kustomize-example/capability-api/*/envs/dev    # Scan all subdirectories under 'envs/'
   template:
     metadata:
-      name: '{{path.dirname | path.basename}}'  # Extracts the immediate parent directory name
+      name: '{{path.dirname | path.basename | lower | replace "-" ""}}'  # Extracts the immediate parent directory name
       namespace: argocd
     spec:
       project: default
