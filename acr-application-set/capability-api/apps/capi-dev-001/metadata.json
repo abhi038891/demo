@@ -1,0 +1,6 @@
+{
+    "appName":"capi-dev-001",
+    "chartName":"helm/capi-app-helm-dev",
+    "version":"0.1.*"
+}
+    
