@@ -1,14 +1,14 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: simple-virtualservice
+  name: simple-poc-virtualservice
 spec:
   http:
   - match:
     - uri:
-        exact: /simple-dev-virtualservice
+        exact: /simple-poc-dev-virtualservice
     route:
     - destination:
-        host: simple-dev-virtualservice
+        host: simple-poc-dev-virtualservice
         port:
           number: 80
