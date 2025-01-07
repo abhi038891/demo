@@ -1,0 +1,2 @@
+chart: helm/demo-virtualservice
+version: 0.1.*

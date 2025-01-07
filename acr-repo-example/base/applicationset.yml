@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: acr-applicationset-helm-exapmple-01
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: 'https://github.com/abhi038891/demo.git' # Your Git repo URL
+      revision: main  # Branch to monitor
+      files:
+      - path: "acr-repo-example/capability-api/apps/**/config.json"
+  template:
+    metadata:
+      name: '{{.appName}}'  # Application name based on the directory name
+      namespace: argocd
+    spec:
+      project: default
+      source:
+        repoURL: pxsacr.azurecr.io
+        chart: '{{.chartName}}'
+        targetRevision: '{{.version}}'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: 'ind-ns1'  # Dynamic namespace
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
