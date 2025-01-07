@@ -4,9 +4,6 @@ metadata:
   name: allow-intra-namespace-policy-dev
   namespace: ind-ns1  # The namespace where your services reside (e.g., ind-ns1)
 spec:
-  selector:
-    matchLabels: {}  # This allows all services within the namespace (ind-ns1)
-  action: ALLOW
   rules:
     - from:
         - source:
