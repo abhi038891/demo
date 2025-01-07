@@ -18,11 +18,8 @@ spec:
       project: default
       source:
         repoURL: pxsacr.azurecr.io
-        chart: '{{path.basename}}/chart'
+        chart: '{{metadata.chart}}'
         targetRevision: '{{metadata.version}}'
-        helm:
-          valueFiles:
-            - '{{path}}/values.yaml'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'ind-ns1'  # Dynamic namespace
