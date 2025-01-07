@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: {{ .Values.applicationset.name }}
+  namespace: {{ .Values.applicationset.namespace }}
+spec:
+  generators:
+  - git:
+      repoURL: {{ .Values.applicationset.repoURL | quote }}
+      revision: {{ .Values.applicationset.revision | quote }}
+      directories:
+      - path: {{ .Values.applicationset.basePath }}
+  template:
+    metadata:
+      name: '{{ "{{path.basename}}" }}'  # Application name based on directory
+    spec:
+      project: default
+      source:
+        repoURL: pxsacr.azurecr.io
+        chart: {{ .Values.datavalues.name }}
+        targetRevision: 0.1.*
+        helm:
+          valueFiles:
+            - values.yaml # Helm values file
+            - helm-repo-example/capability-api/apps/capi-dev-01/values.yaml
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: {{ .Values.applicationset.resourcesnamespace }}
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
