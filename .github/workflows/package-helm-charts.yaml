@@ -1,0 +1,24 @@
+name: Package and Publish Helm Charts - Manual Trigger
+
+name: Package and Publish Helm Charts
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_branch:
+        description: 'Branch to deploy charts from'
+        required: true
+        type: choice
+        options:
+          - main
+          - rel/release1.0
+        default: main
+
+      environment:
+        description: 'Target deployment environment'
+        required: true
+        type: choice
+        options:
+          - development
+          - innovation
+        default: innovation
