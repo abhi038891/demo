@@ -1,0 +1,27 @@
+namespace:
+  name: my-namespace
+  labels: {}
+  annotations: {}
+service:
+  name: my-service
+  namespace: my-namespace
+  labels:
+    app: my-app
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+  selector:
+    app: my-app
+virtualservice:
+  name: capi-dev-virtualservice-01
+  namespace: ind-ns1
+  hosts:
+    - "*"
+  gateway: capi-dev-virtualservice-01
+  uri: /capi-dev-virtualservice-01
+  destination:
+    host: capi-dev-virtualservice-01
+    port: 80
+authpolicy:
+  name: capi-dev-auth-policy-01
+  namespace: ind-ns1

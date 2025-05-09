@@ -1,0 +1,25 @@
+name: capi-virtualservice-helm-dev
+namespace: ind-ns1
+
+# Service details
+hosts:
+  - capi-virtualservice-helm-dev.default.svc.cluster.local
+
+gateways:
+  - capi-gatway-helm-dev
+
+# HTTP route
+http:
+  - match:
+      - uri:
+          prefix: /capi-virtualservice-helm-dev
+    route:
+      - destination:
+          host: capi-virtualservice-helm-dev.default.svc.cluster.local
+          port:
+            number: 80
+
+serviceaccount:
+  create: true
+  name: capi-serviceaccount-helm-argocd-app-01
+  namespace: ind-ns1

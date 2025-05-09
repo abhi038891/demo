@@ -1,0 +1,13 @@
+﻿apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: {{ .Values.authpolicy.name }}
+  namespace: {{ .Values.authpolicy.namespace }}
+spec:
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            namespaces: ['{{ .Values.authpolicy.namespace }}']
+  selector:
+    matchLabels: {}

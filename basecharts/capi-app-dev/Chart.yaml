@@ -1,0 +1,6 @@
+apiVersion: v2
+name: capi-app-helm-dev
+description: A Helm chart for basic application modeule having set of kubernetes artifacts
+type: application
+version: 0.1.4
+appVersion: 1.0.0
