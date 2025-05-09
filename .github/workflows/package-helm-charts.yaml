@@ -1,7 +1,5 @@
 name: Package and Publish Helm Charts - Manual Trigger
 
-name: Package and Publish Helm Charts
-
 on:
   workflow_dispatch:
     inputs:
