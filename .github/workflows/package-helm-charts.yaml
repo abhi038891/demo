@@ -9,7 +9,7 @@ on:
         type: choice
         options:
           - main
-          - rel/release1.0
+          - development
         default: main
 
       environment:
@@ -39,4 +39,30 @@ jobs:
           folders=$(find basecharts -mindepth 1 -maxdepth 1 -type d | jq -R -s -c 'split("\n") | map(select(length > 0))')
           echo "matrix=$folders"
           echo "matrix=$folders" >> $GITHUB_OUTPUT
+
+  deploy-development:
+    needs: publish-charts
+    strategy:
+      matrix:
+        target-folder: ${{ fromJson(needs.publish-charts.outputs.folders) }}
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.environment == 'development' }}
+    steps:
+      - name: Echo deployment target
+        run: echo "🚀 Deploying to DEVELOPMENT environment"
+      - name: Echo chart folder
+        run: echo "Target chart folder: ${{ matrix.target-folder }}"
+
+  deploy-innovation:
+    needs: publish-charts
+    strategy:
+      matrix:
+        target-folder: ${{ fromJson(needs.publish-charts.outputs.folders) }}
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.environment == 'innovation' }}
+    steps:
+      - name: Echo deployment target
+        run: echo "🚀 Deploying to INNOVATION environment"
+      - name: Echo chart folder
+        run: echo "Target chart folder: ${{ matrix.target-folder }}"
 
