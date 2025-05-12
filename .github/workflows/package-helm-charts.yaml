@@ -75,7 +75,9 @@ jobs:
 
   deploy-development:
     if: ${{ github.event.inputs.hotfix_deployment != 'true' }}
-    needs: deploy-innovation
+    needs: 
+      - deploy-innovation
+      - publish-charts
     runs-on: ubuntu-latest
     strategy:
       matrix:
